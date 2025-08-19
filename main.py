@@ -14,8 +14,28 @@ def download_video(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
 
-# Example usage
-video_url = 'https://www.youtube.com/watch?v=1qlQUQ_pRVI'
-download_video(video_url)
+def download_audio_as_wav(url):
+    ydl_opts = {
+        'format': 'bestaudio/best',  # 抓最高品質的音訊
+        'outtmpl': 'downloads/%(title)s.%(ext)s',  # 儲存路徑與命名
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',  # 最終輸出格式
+            'preferredquality': '0',  # 儘管對 wav 無效，但保留以符合語法
+        }],
+    }
 
-# ffmpeg -i "input.mp4" -c:v libx264 -c:a aac "output_fixed.mp4"
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+
+
+
+# 網址放這裡！
+video_url = 'https://youtu.be/sWHIyrS9M70?si=L-DVkIs_QcTwgp3v'
+
+
+# download_video(video_url)
+download_audio_as_wav(video_url)
+
+
