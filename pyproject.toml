@@ -1,17 +1,21 @@
+[tool.poetry]
+
 [project]
-name = "aa"
+name = "ytdl"
 version = "0.1.0"
-description = ""
+description = "Simple YouTube downloader CLI (video/audio) using yt-dlp"
 authors = [
-    {name = "swenbao",email = "essence.lost.0b@icloud.com"}
+    {name = "swenbao", email = "essence.lost.0b@icloud.com"}
 ]
-readme = "README.md"
+# 移除 readme 欄位以避免 README.md 缺失時的安裝錯誤
 requires-python = ">=3.12"
 dependencies = [
-    "pytube @ git+https://github.com/pytube/pytube",
     "yt-dlp (>=2025.4.30,<2026.0.0)"
 ]
 
+# 宣告可執行指令：ytdl -> main.py 的 cli() 函式
+[tool.poetry.scripts]
+ytdl = "ytdl.cli:cli"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
